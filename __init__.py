@@ -1,14 +1,21 @@
 # AI NODES
-from .nodes.ai.FL_Fal_Gemini_ImageEdit import FL_Fal_Gemini_ImageEdit
-from .nodes.ai.FL_Fal_Kling_AIAvatar import FL_Fal_Kling_AIAvatar
-from .nodes.ai.FL_Fal_Kontext import FL_Fal_Kontext
-from .nodes.ai.FL_Fal_Pixverse import FL_Fal_Pixverse
-from .nodes.ai.FL_Fal_Pixverse_LipSync import FL_Fal_Pixverse_LipSync
-from .nodes.ai.FL_Fal_Pixverse_Transition import FL_Fal_Pixverse_Transition
-from .nodes.ai.FL_Fal_Seedance_i2v import FL_Fal_Seedance_i2v
-from .nodes.ai.FL_Fal_Seedream_Edit import FL_Fal_Seedream_Edit
-from .nodes.ai.FL_Fal_SeedVR_Upscale import FL_Fal_SeedVR_Upscale
-from .nodes.ai.FL_Fal_Sora import FL_Fal_Sora
+_FAL_NODES_AVAILABLE = True
+try:
+    from .nodes.ai.FL_Fal_Gemini_ImageEdit import FL_Fal_Gemini_ImageEdit
+    from .nodes.ai.FL_Fal_Kling_AIAvatar import FL_Fal_Kling_AIAvatar
+    from .nodes.ai.FL_Fal_Kontext import FL_Fal_Kontext
+    from .nodes.ai.FL_Fal_Pixverse import FL_Fal_Pixverse
+    from .nodes.ai.FL_Fal_Pixverse_LipSync import FL_Fal_Pixverse_LipSync
+    from .nodes.ai.FL_Fal_Pixverse_Transition import FL_Fal_Pixverse_Transition
+    from .nodes.ai.FL_Fal_Seedance_i2v import FL_Fal_Seedance_i2v
+    from .nodes.ai.FL_Fal_Seedream_Edit import FL_Fal_Seedream_Edit
+    from .nodes.ai.FL_Fal_SeedVR_Upscale import FL_Fal_SeedVR_Upscale
+    from .nodes.ai.FL_Fal_Sora import FL_Fal_Sora
+except ImportError as e:
+    _FAL_NODES_AVAILABLE = False
+    print(f"[FL Fill-Nodes] Warning: Could not load Fal nodes: {e}")
+    print("[FL Fill-Nodes] Install fal-client to enable Fal-based nodes.")
+
 from .nodes.ai.FL_GeminiVideoCaptioner import FL_GeminiVideoCaptioner
 from .nodes.ai.FL_Hedra_API import FL_Hedra_API
 from .nodes.ai.FL_PixVerseAPI import FL_PixVerseAPI
@@ -48,7 +55,6 @@ from .nodes.audio.FL_Audio_Reactive_Speed import FL_Audio_Reactive_Speed
 from .nodes.audio.FL_Audio_Segment_Extractor import FL_Audio_Segment_Extractor
 from .nodes.audio.FL_Audio_Separation import FL_Audio_Separation
 from .nodes.audio.FL_Audio_Shot_Iterator import FL_Audio_Shot_Iterator
-from .nodes.audio.FL_AudioFrameCalculator import FL_AudioFrameCalculator
 
 # CAPTIONING NODES
 from .nodes.captioning.FL_CSVExtractor import FL_CSVExtractor
@@ -354,16 +360,6 @@ NODE_CLASS_MAPPINGS = {
     "FL_WF_Agent": FL_WF_Agent,
     "FL_BlackFrameReject": FL_BlackFrameReject,
     "FL_PixVerseAPI": FL_PixVerseAPI,
-    "FL_Fal_Pixverse": FL_Fal_Pixverse,
-    "FL_Fal_Kontext": FL_Fal_Kontext,
-    "FL_Fal_Gemini_ImageEdit": FL_Fal_Gemini_ImageEdit,
-    "FL_Fal_Seedance_i2v": FL_Fal_Seedance_i2v,
-    "FL_Fal_Seedream_Edit": FL_Fal_Seedream_Edit,
-    "FL_Fal_SeedVR_Upscale": FL_Fal_SeedVR_Upscale,
-    "FL_Fal_Pixverse_Transition": FL_Fal_Pixverse_Transition,
-    "FL_Fal_Pixverse_LipSync": FL_Fal_Pixverse_LipSync,
-    "FL_Fal_Kling_AIAvatar": FL_Fal_Kling_AIAvatar,
-    "FL_Fal_Sora": FL_Fal_Sora,
     "FL_PromptBasic": FL_PromptBasic,
     "FL_PromptMulti": FL_PromptMulti,
     "FL_PromptSelectorBasic": FL_PromptSelectorBasic,
@@ -414,7 +410,6 @@ NODE_CLASS_MAPPINGS = {
     "FL_Audio_Segment_Extractor": FL_Audio_Segment_Extractor,
     "FL_Audio_Separation": FL_Audio_Separation,
     "FL_Audio_Shot_Iterator": FL_Audio_Shot_Iterator,
-    "FL_AudioFrameCalculator": FL_AudioFrameCalculator,
     "FL_QwenImageEditStrength": FL_QwenImageEditStrength,
     "FL_IntToFloat": FL_IntToFloat,
     "FL_FloatToInt": FL_FloatToInt,
@@ -542,16 +537,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FL_WF_Agent": "FL Workflow Agent",
     "FL_BlackFrameReject": "FL Black Frame Reject",
     "FL_PixVerseAPI": "FL PixVerse API",
-    "FL_Fal_Pixverse": "FL Fal Pixverse API",
-    "FL_Fal_Kontext": "FL Fal Kontext API",
-    "FL_Fal_Gemini_ImageEdit": "FL Fal Gemini Image Edit",
-    "FL_Fal_Seedance_i2v": "FL Fal Seedance i2v",
-    "FL_Fal_Seedream_Edit": "FL Fal Seedream Edit",
-    "FL_Fal_SeedVR_Upscale": "FL Fal SeedVR Upscale",
-    "FL_Fal_Pixverse_Transition": "FL Fal Pixverse Transition",
-    "FL_Fal_Pixverse_LipSync": "FL Fal Pixverse LipSync",
-    "FL_Fal_Kling_AIAvatar": "FL Fal Kling AI Avatar",
-    "FL_Fal_Sora": "FL Fal Sora 2",
     "FL_PromptBasic": "FL Prompt Basic",
     "FL_PromptMulti": "FL Prompt Multi",
     "FL_PromptSelectorBasic": "FL Prompt Selector Basic",
@@ -604,7 +589,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FL_Audio_Segment_Extractor": "FL Audio Segment Extractor",
     "FL_Audio_Separation": "FL Audio Separation",
     "FL_Audio_Shot_Iterator": "FL Audio Shot Iterator",
-    "FL_AudioFrameCalculator": "FL Audio Frame Calculator",
     "FL_QwenImageEditStrength": "FL Qwen Image Edit with Strength",
     "FL_IntToFloat": "FL Int to Float",
     "FL_FloatToInt": "FL Float to Int",
@@ -614,6 +598,33 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FL_KartelJobInput": "FL Kartel Job Input",
     "FL_KartelJobOutput": "FL Kartel Job Output",
 }
+
+# Conditionally register Fal nodes if the SDK loaded successfully
+if _FAL_NODES_AVAILABLE:
+    NODE_CLASS_MAPPINGS.update({
+        "FL_Fal_Pixverse": FL_Fal_Pixverse,
+        "FL_Fal_Kontext": FL_Fal_Kontext,
+        "FL_Fal_Gemini_ImageEdit": FL_Fal_Gemini_ImageEdit,
+        "FL_Fal_Seedance_i2v": FL_Fal_Seedance_i2v,
+        "FL_Fal_Seedream_Edit": FL_Fal_Seedream_Edit,
+        "FL_Fal_SeedVR_Upscale": FL_Fal_SeedVR_Upscale,
+        "FL_Fal_Pixverse_Transition": FL_Fal_Pixverse_Transition,
+        "FL_Fal_Pixverse_LipSync": FL_Fal_Pixverse_LipSync,
+        "FL_Fal_Kling_AIAvatar": FL_Fal_Kling_AIAvatar,
+        "FL_Fal_Sora": FL_Fal_Sora,
+    })
+    NODE_DISPLAY_NAME_MAPPINGS.update({
+        "FL_Fal_Pixverse": "FL Fal Pixverse API",
+        "FL_Fal_Kontext": "FL Fal Kontext API",
+        "FL_Fal_Gemini_ImageEdit": "FL Fal Gemini Image Edit",
+        "FL_Fal_Seedance_i2v": "FL Fal Seedance i2v",
+        "FL_Fal_Seedream_Edit": "FL Fal Seedream Edit",
+        "FL_Fal_SeedVR_Upscale": "FL Fal SeedVR Upscale",
+        "FL_Fal_Pixverse_Transition": "FL Fal Pixverse Transition",
+        "FL_Fal_Pixverse_LipSync": "FL Fal Pixverse LipSync",
+        "FL_Fal_Kling_AIAvatar": "FL Fal Kling AI Avatar",
+        "FL_Fal_Sora": "FL Fal Sora 2",
+    })
 
 # Conditionally register google-genai nodes if the SDK loaded successfully
 if _GENAI_NODES_AVAILABLE:
